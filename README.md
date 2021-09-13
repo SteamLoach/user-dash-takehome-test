@@ -18,29 +18,31 @@ VUE_APP_ENABLE_LOGGER=true
 ### Production
 Use `npm run build` to compile and minify for production.
 
+A demo of the production build [can be found here](https://fervent-leavitt-2dd4cf.netlify.app/#/).
+
 ------------------
 
 ### Implementation Notes
 
 #### API
-`axios` is used for api requests. A general purpose api service function can be found under `src/api/service.ts`. The service is preloaded with the root JSONPlaceholder url and accepts an `options` object with a `method`, `url`, and a `payload` for `PUT`, `PATCH`, and `POST` requests.
+`axios` is used for api requests. A general purpose api service function can be found under `src/api/service`. The service is preloaded with the root JSONPlaceholder url and accepts an `options` object with a `method`, `url`, and a `payload` (for `PUT`, `PATCH`, and `POST` requests).
 
 ```js
 const results = await service({
-  method: ServiceMethodNames.Get, //defined under 'src/constants/api'
+  method: 'get' // service will lowerCase the provided method
   url: 'users' // users/3, posts?userId=3, etc
 })
 
 ```
 
 #### Store
-The app uses a modular `Vuex` store, configured under `src/store/index.ts`. All api requests and corresponding data are managed through the store.
+The app uses a modular `Vuex` store, configured under `src/store/index`. All api requests and corresponding data are managed through the store.
 
 ##### Modules
 Each module has:
-- A module name, defined under `src/constants/store.ts`
-- `store`, `mutation`, `action`, and `getter` **names** defined under `keys.ts`, in the module folder.
-- `store`, `mutations`, `actions`, and `getters` defined under `index.ts`, in the module folder.
+- A module name, defined under `src/constants/store`
+- `store`, `mutation`, `action`, and `getter` **names** defined under `keys`, in the module folder.
+- `store`, `mutations`, `actions`, and `getters` defined under `index`, in the module folder.
 
 `Vuex's` `mapMutations`, `mapActions`, and `mapGetters` helpers can be used to map store functions into components using the relevant module name and corresponding keys.
 
@@ -67,7 +69,7 @@ Each module has:
 
 ### Routing
 
-Routing is handled by `Vue Router` and configured under `src/router/index.ts`. Route names and paths are defined under `src/constants/router.ts`.
+Routing is handled by `Vue Router` and configured under `src/router/index`. Route names and paths are defined under `src/constants/router`.
 
 
 ### Pages
