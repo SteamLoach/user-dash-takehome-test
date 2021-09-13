@@ -3,6 +3,9 @@ node_modules
 /dist
 
 
+#commit notes
+commit.txt
+
 # local env files
 .env.local
 .env.*.local

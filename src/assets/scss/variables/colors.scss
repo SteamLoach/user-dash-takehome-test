@@ -1,0 +1,13 @@
+//Shades
+$shade-hue: 210 !default;
+$shade-saturation: 10% !default;
+
+$shade-black: hsl(0, 0%, 2%) !default;
+$shade-darkest: hsl($shade-hue, $shade-saturation, 18%) !default;
+$shade-darker: hsl($shade-hue, $shade-saturation, 32%) !default;
+$shade-dark: hsl($shade-hue, $shade-saturation, 48%) !default;
+$shade-base: hsl($shade-hue, $shade-saturation, 64%) !default;
+$shade-light: hsl($shade-hue, $shade-saturation, 76%) !default;
+$shade-lighter: hsl($shade-hue, $shade-saturation, 84%) !default;
+$shade-lightest: hsl($shade-hue, $shade-saturation, 92%) !default;
+$shade-white: hsl($shade-hue, $shade-saturation, 98%) !default;
