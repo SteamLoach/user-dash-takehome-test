@@ -30,10 +30,22 @@
     </v-row>
     <v-divider class="mb-4"></v-divider>
     <v-slide-y-reverse-transition>
-      <user-list
+      <v-row
         v-if="!showRouteLoading"
-        :users="usersBySearchText">
-      </user-list>
+        no-gutters
+        class="justify-center">
+        <user-list
+          v-if="hasUsersInStore"
+          :users="usersBySearchText">
+        </user-list>
+        <v-alert
+          v-else
+          type="info"
+          max-width="375"
+          class="mx-4 my-12">
+          No users to display
+        </v-alert>
+      </v-row>
     </v-slide-y-reverse-transition>
   </div>
 </template>
@@ -63,7 +75,7 @@ export default {
     return {
       isFetchingUsers: true,
       searchFieldText: '',
-      searchableKeys: [
+      userSearchableKeys: [
         UserSearchableKeys.Name,
         UserSearchableKeys.Username,
         UserSearchableKeys.Email,
@@ -76,17 +88,21 @@ export default {
     showRouteLoading() {
       return this.isFetchingUsers;
     },
-    usersBySearchText() {
-      return this.usersBySortParam.filter(user => {
-        if(!this.searchFieldText) {return true}
-        const searchTextRegExp = new RegExp(this.searchFieldText, 'i');
-        return this.searchableKeys.some(key => searchTextRegExp.test(user[key]))
-      })
-    },
     usersBySortParam() {
       return this[UserGetterNames.Users].map(user => user).sort((a,b) => {
         return a[this.sortByParam] > b[this.sortByParam] ? 1 : -1;
       });
+    },
+    usersBySearchText() {
+      return this.usersBySortParam.filter(user => {
+        if(!this.searchFieldText) return true;
+        return this.userSearchableKeys.some(
+          key => new RegExp(this.searchFieldText, 'i').test(user[key])
+        );
+      })
+    },
+    hasUsersInStore() {
+      return this[UserGetterNames.Users].length;
     },
     ...mapGetters(ModuleNames.Users, [
       UserGetterNames.Users,

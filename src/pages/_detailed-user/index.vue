@@ -2,7 +2,7 @@
   <div>
     <route-loading-indicator :isLoading="showRouteLoading" />
     <div  class="detailed-user-page pa-6 py-md-6 px-md-8">
-      <h2 class="d-flex align-center mb-8">
+      <h2 class="d-flex align-start align-md-center mb-8">
         <v-icon
           class="mr-2"
           color="primary"
@@ -10,7 +10,9 @@
           mdi-account-details
         </v-icon>
         <div>
-          <router-link :to="usersRoute">Users</router-link>
+          <router-link :to="usersRoute">
+            Users
+          </router-link>
           <v-slide-x-transition>
             <span v-if="!showRouteLoading"> > {{detailedUser.name}}</span>
           </v-slide-x-transition>

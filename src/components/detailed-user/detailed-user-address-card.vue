@@ -19,7 +19,8 @@
           </span>
           <br
             v-if="item.lineBreak"
-            :key="`linebreak-${item.value}`" />
+            :key="`linebreak-${item.value}`"
+          />
         </template>
       </div>
     </v-card-text>

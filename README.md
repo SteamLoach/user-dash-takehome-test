@@ -29,7 +29,7 @@ A demo of the production build [can be found here](https://fervent-leavitt-2dd4c
 
 ```js
 const results = await service({
-  method: 'get' // service will lowerCase the provided method
+  method: 'get', // case insensitive
   url: 'users' // users/3, posts?userId=3, etc
 })
 

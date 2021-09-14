@@ -7,7 +7,7 @@ import { Timeouts } from "@/constants/timeouts";
 const log = logger({
   title: 'SERVICE',
   time: true,
-  backgroundColor: '#0AB3AF'
+  backgroundColor: '#b8c9f9'
 })
 
 export const service = async ({
@@ -18,13 +18,13 @@ export const service = async ({
   const normalizedMethod = method.toLowerCase();
   log.group('api request')
   try {
-    log.await(`${normalizedMethod} | ${url}`)
+    log.await(`${normalizedMethod.toUpperCase()} | "${url}"`)
     const res = await axios({
       method: normalizedMethod,
       baseURL: JSON_PLACEHOLDER_URL,
       url: url,
       data: payload,
-      timeout: Timeouts.TenSeconds,
+      timeout: Timeouts.ThirtySeconds,
     });
     log.info(res.data)
     log.complete(`request complete`)
